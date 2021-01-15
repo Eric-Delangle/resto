@@ -1,3 +1,16 @@
 body {
   background-color: #ffffff;
 }
+
+/* Les bulles */
+#bulledroite {
+  position: absolute;
+  z-index: 9;
+}
+
+#bullegauche {
+  position: absolute;
+  left: 70%;
+  top: 400px;
+  z-index: 9;
+}

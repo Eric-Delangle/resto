@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les menus
+{% endblock %}
+
+{% block body %}
+	<h1 class="text-center mt-5">Les menus</h1>
+	<div class="container mt-5">
+		<table class="table">
+			<thead>
+				<tr>
+
+					<th>Name</th>
+					<th>Entree</th>
+					<th>Plat</th>
+					<th>Fromage</th>
+					<th>Dessert</th>
+					<th>Boisson</th>
+					<th>Price</th>
+					{#<th>actions</th>#}
+				</tr>
+			</thead>
+			<tbody>
+				{% for menu in menus %}
+					<tr>
+
+						<td>{{ menu.name }}</td>
+						<td>{{ menu.entree }}</td>
+						<td>{{ menu.plat }}</td>
+						<td>{{ menu.fromage }}</td>
+						<td>{{ menu.dessert }}</td>
+						<td>{{ menu.boisson }}</td>
+						<td>{{ menu.price }}</td>
+						{# 
+																														<td>
+																															<a href="{{ path('menu_show', {'id': menu.id}) }}">show</a>
+																															<a href="{{ path('menu_edit', {'id': menu.id}) }}">edit</a>
+																														</td>
+																														#}
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="9">Pas encore de menu créé.</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		{# 	<a href="{{ path('menu_new') }}">Create new</a> #}
+	</div>
+{% endblock %}

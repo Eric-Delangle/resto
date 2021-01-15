@@ -5,8 +5,12 @@
 
 {% block body %}
 	<h1 class="text-center mt-3">Bienvenue dans votre restaurant !</h1>
+	{# bulles #}
+	<div id="bulledroite"><img src="https://127.0.0.1:8000/images/bulledroite.png" alt="bulle droite"></div>
+	<div id="bullegauche"><img src="https://127.0.0.1:8000/images/bullegauche.png" alt="bulle gauche"></div>
+	{# fin bulles #}
 	{# carousel #}
-	<div class="container">
+	<div class="container carousel">
 		<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 			<div class="carousel-inner">
 				<div class="carousel-item active">
@@ -30,6 +34,7 @@
 		</div>
 	</div>
 	{# fin carousel #}
+
 	<script>
 		document.getElementById('accueil').style.display = 'none';
 	</script>
