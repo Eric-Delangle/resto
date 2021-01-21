@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre compte
+{% endblock %}
+
+{% block body %}
+	<h1 class="text-center mt-3">Votre compte
+		{{ user.firstName | capitalize }}
+		{{ user.lastName | capitalize  }}</h1>
+
+	<div class="container row m-auto">
+		<div class="col">
+			<h3 class="text-center mt-5">Vos commandes</h3>
+
+
+			{% if commande != []  %}
+
+				{% for achat in commande %}
+
+					{% for item in achat.menu %}
+
+
+						<p class="text-center mt-3">Votre menu :
+							<strong>{{ item.name | capitalize }}</strong><br></p>
+
+						<div class="text-center">
+
+							{{ item.entree}}
+							{{ item.plat}}
+							{{ item.fromage}}
+							{{ item.dessert}}
+							{{ item.boisson}}
+							{{ item.price}}
+
+						</div>
+					{% endfor %}
+					<p class="text-center mt-3">Quantité :
+						{{ achat.quantity}}</p>
+					<p class="text-center">
+						<button class="btn btn-danger btn-sm">
+							<a style="color:white; text-decoration:none;" href="{{ path('order_delete', {'id': achat.id}) }}">Annuler cette commande</a>
+						</button>
+					</p>
+
+
+				{% endfor %}
+
+
+			{% else %}
+				<p class="text-center mt-5">Vous n'avez pas de commande en cours.</p>
+			{% endif %}
+
+		</div>
+
+		<div class="col text-center">
+			<h3 class="text-center mt-5">Vos informations personnelles</h3>
+			<p class="text-center mt-3">Vous habitez :
+				{{ user.address | capitalize}}</p>
+			<p class="text-center">à
+				{{ user.city | capitalize }}</p>
+			<p class="text-center">Votre numéro de téléphone :
+				{{ user.tel }}</p>
+			<p class="text-center">Votre adresse email :
+				{{ user.email }}</p>
+			<button class="btn btn-primary">
+				<a style="color: white; text-decoration:none;" href="{{ path('user_edit', {'id': user.id }) }}">Modifier vos informations</a>
+			</button>
+		</div>
+
+
+	</div>
+
+{% endblock %}

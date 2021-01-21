@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block steelsheets %}{% endblock %}
+{% block javascripts %}{% endblock %}
+{% block title %}
+	Administration
+{% endblock %}
+{% block body %}
+	<div class="container">
+		<h2 class="titre text-center mt-5">Votre espace d'administration</h2>
+
+	</div>
+	<div class="text-center mt-3">
+
+		<a class="btn btn-info" href="{{ path('menu_admin_index') }}">Gestion des menus</a>
+		<a class="btn btn-success" href="{{ path('user_admin_index') }}">Gestion des clients</a>
+		<a class="btn btn-warning" href="{{ path('purchase_admin_index') }}">Gestion des commandes</a>
+
+	</div>
+
+	<script>
+		document.getElementById('inscription').style.display = 'none';
+	</script>
+	<script>
+		document.getElementById('connexion').style.display = 'none';
+	</script>
+	<script>
+		document.getElementById('deconnexion').style.display = 'block';
+	</script>
+	<script>
+		document.getElementById('compte').style.display = 'block';
+	</script>
+	<script>
+		document.getElementById('admin').style.display = 'none';
+	</script>
+{% endblock %}

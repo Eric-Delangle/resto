@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Order
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1 class="text-center mt-3">Commandez votre menu !</h1>
+
+		<div classe="text-center mt-5">
+			<h2 class="text-center">{{ menu.name }}</h2>
+			<p class="text-center mt-3">{{ menu.entree }}</p>
+			<p class="text-center">{{ menu.plat }}</p>
+			<p class="text-center">{{ menu.fromage }}</p>
+			<p class="text-center">{{ menu.dessert }}</p>
+			<p class="text-center">{{ menu.boisson }}</p>
+			<p class="text-center">Total :
+				{{ menu.price }}</p>
+
+		</div>
+		<div class="text-center">
+			{{ include('order/_form.html.twig') }}
+
+			<button class="btn btn-primary bouton mt-3">
+				<a href="{{ path('menu_index') }}">Retourner aux menus</a>
+			</button>
+
+		</div>
+
+	</div>
+
+{% endblock %}

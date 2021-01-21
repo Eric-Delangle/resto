@@ -12,10 +12,30 @@
 				<a class="nav-link" href="{{ path('menu_index' ) }}">Menus</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Commande</a>
+				<a class="nav-link" href="#">Contact</a>
+			</li>
+
+		</ul>
+		<ul class="navbar-nav liens_insc_conn">
+			<li lass="nav-item">
+				<a class="nav-link" id="inscription" href="{{ path('security_registration') }}" tabindex="-1" aria-disabled="true">
+					<i class="fas fa-utensils"></i>
+					Inscription</a>
+			</li>
+			<li lass="nav-item">
+				<a class="nav-link" id="connexion" href="{{ path('security_login') }}" tabindex="-1" aria-disabled="true">
+					<i class="fas fa-sign-in-alt black"></i>
+					Connexion</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Contact</a>
+				<a class="nav-link" id="deconnexion" href="{{ path('security_logout') }}" tabindex="-1" aria-disabled="true">
+					<i class="fas fa-sign-out-alt black"></i>
+					Déconnexion</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="compte" href="{{ path('member_account') }}" tabindex="-1" aria-disabled="true">
+					<i class="fas fa-home"></i>
+					Votre compte</a>
 			</li>
 
 		</ul>

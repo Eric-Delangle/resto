@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+
+		<h1 class="text-center">Liste des clients</h1>
+
+		<table class="table m-auto">
+			<thead>
+				<tr>
+
+					<th>Email</th>
+
+
+					<th>Prénom</th>
+					<th>Nom</th>
+					<th>Adresse</th>
+					<th>Ville</th>
+					<th>Tel</th>
+					<th>Inscrit</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+
+				{% for user in users %}
+					<tr>
+
+						<td>{{ user.email }}</td>
+
+
+						<td>{{ user.firstName }}</td>
+						<td>{{ user.lastName }}</td>
+						<td>{{ user.address }}</td>
+						<td>{{ user.city }}</td>
+						<td>{{ user.tel }}</td>
+						<td>{{ user.registeredAt ? user.registeredAt|date('\\l\\e d-m-y \\à H:i') : '' }}</td>
+						<td>
+							<button class="btn btn-success">
+								<a style="color:white; text-decoration:none;" href="{{ path('user_show', {'id': user.id}) }}">Voir les informations du client</a>
+							</button>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="12">no records found</td>
+					</tr>
+				{% endfor %}
+
+			</tbody>
+		</table>
+
+
+	</div>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification du profil
+{% endblock %}
+
+{% block body %}
+	<h1 class="text-center mt-3">Modification du profil</h1>
+	<div class="container">
+		{{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+
+		<button class="btn btn-success">
+			<a style="color:white; text-decoration:none;" href="{{ path('member_account') }}">Retour à votre compte</a>
+		</button>
+
+		<p class="mt-2">{{ include('user/_delete_form.html.twig') }}</p>
+	</div>
+
+{% endblock %}

@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\MenuRepository;
+use App\Entity\Purchase;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\MenuRepository;
 
 /**
  * @ORM\Entity(repositoryClass=MenuRepository::class)
@@ -47,10 +48,7 @@ class Menu
      */
     private $boisson;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Order::class, inversedBy="name")
-     */
-    private $commande;
+
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -58,9 +56,15 @@ class Menu
     private $price;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255)hgcv 
      */
     private $slug;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Purchase::class, mappedBy="menu")
+     */
+    private $purchase;
+
 
     public function getId(): ?int
     {
@@ -139,17 +143,6 @@ class Menu
         return $this;
     }
 
-    public function getCommande(): ?Order
-    {
-        return $this->commande;
-    }
-
-    public function setCommande(?Order $commande): self
-    {
-        $this->commande = $commande;
-
-        return $this;
-    }
 
     public function getPrice(): ?string
     {
@@ -171,6 +164,23 @@ class Menu
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    public function getPurchase(): ?Purchase
+    {
+        return $this->purchase;
+    }
+
+    public function setPurchase(?Purchase $purchase): self
+    {
+        $this->purchase = $purchase;
 
         return $this;
     }

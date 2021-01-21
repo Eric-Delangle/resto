@@ -1,0 +1,13 @@
+{{ form_start(form) }}
+
+{{ form_row(form.name, {'label': 'Menu','attr': {'placeholder': "Le menu"}}) }}
+{{ form_row(form.entree, {'label': 'Entrée','attr': {'placeholder': "L'entrée"}}) }}
+{{ form_row(form.plat, {'label': 'Plat','attr': {'placeholder': "Le plat"}}) }}
+{{ form_row(form.fromage, {'label': 'Fromage','attr': {'placeholder': "Le fromage"}}) }}
+{{ form_row(form.dessert, {'label': 'Dessert','attr': {'placeholder': "Le dessert"}}) }}
+{{ form_row(form.boisson, {'label': 'Boisson','attr': {'placeholder': "La boisson"}}) }}
+{{ form_row(form.price, {'label': 'Prix','attr': {'placeholder': "Le prix"}}) }}
+
+
+<button class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}

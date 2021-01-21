@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification du menu
+{% endblock %}
+
+{% block body %}
+	<h1 class="text-center mt-3">Modifier le menu</h1>
+	<div class="container">
+		{{ include('admin/menu/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
+
+		<button class="btn btn-primary mt-2">
+			<a style="color:white; text-decoration: none;" href="{{ path('menu_admin_index') }}">Retour à la liste des menus</a>
+		</button>
+
+		<p class="mt-2">{{ include('admin/menu/_delete_form.html.twig') }}</p>
+
+
+	</div>
+
+{% endblock %}

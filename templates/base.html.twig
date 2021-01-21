@@ -19,7 +19,46 @@
 	</head>
 	<body>
 		{% include "partials/_navbar.html.twig" %}
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success text-center">
+				{{ message }}
+			</div>
+		{% endfor %}
 		{% block body %}{% endblock %}
 		{% block javascripts %}{% endblock %}
+		{% if app.user %}
+			<script>
+				document.getElementById('inscription').style.display = 'none';
+			</script>
+			<script>
+				document.getElementById('connexion').style.display = 'none';
+			</script>
+			<script>
+				document.getElementById('deconnexion').style.display = 'block';
+			</script>
+			<script>
+				document.getElementById('compte').style.display = 'block';
+			</script>
+		{% else %}
+			<script>
+				document.getElementById('inscription').style.display = 'block';
+			</script>
+			<script>
+				document.getElementById('connexion').style.display = 'block';
+			</script>
+			<script>
+				document.getElementById('deconnexion').style.display = 'none';
+			</script>
+			<script>
+				document.getElementById('compte').style.display = 'none';
+			</script>
+
+		{% endif %}
+		{% if is_granted('ROLE_ADMIN') %}
+			<script>
+				document.getElementById('admin').style.display = 'block';
+			</script>
+		{% endif %}
+
 	</body>
 </html></head></html>

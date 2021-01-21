@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les menus
+{% endblock %}
+
+{% block body %}
+
+<h1 class="text-center mt-5">Gestion des menus</h1>
+
+<div class="container mt-5">
+	<button class="btn btn-primary">
+		<a style="color:white; text-decoration:none;" href="{{ path('menu_admin_new') }}">Créer un menu</a>
+	</button>
+	<button class="btn btn-success">
+		<a style="color:white; text-decoration:none;" href="{{ path('member_account') }}">Accueil de l'adminstration</a>
+	</button>
+
+	{% for menu in menus %}
+
+
+		<table class="table mt-5">
+			<tbody>
+
+				<tr>
+					<th>Nom du menu</th>
+					<td>{{ menu.name }}</td>
+				</tr>
+				<tr>
+					<th>Entree</th>
+					<td>{{ menu.entree | capitalize }}</td>
+				</tr>
+				<tr>
+					<th>Plat</th>
+					<td>{{ menu.plat | capitalize }}</td>
+				</tr>
+				<tr>
+					<th>Fromage</th>
+					<td>{{ menu.fromage | capitalize }}</td>
+				</tr>
+				<tr>
+					<th>Dessert</th>
+					<td>{{ menu.dessert | capitalize }}</td>
+				</tr>
+				<tr>
+					<th>Boisson</th>
+					<td>{{ menu.boisson | capitalize }}</td>
+				</tr>
+				<tr>
+					<th>Prix</th>
+					<td>{{ menu.price }}</td>
+				</tr>
+			</tbody>
+		</table>
+
+
+		<p>
+
+			<button class="btn btn-warning">
+				<a style="color:white; text-decoration:none;" href="{{ path('menu_admin_edit', {'id': menu.id}) }}">modifier le menu</a>
+			</button>
+
+		</p>
+
+	</p>
+{% else %}
+
+	<p colspan="9" class="text-center">Pas encore de menu créé.</p>
+	<button class="btn btn-primary">
+		<a style="color:white; text-decoration:none;" href="{{ path('menu_admin_new') }}">Créer un menu</a>
+	</button>
+</p>{% endfor %}</div>{% endblock %}

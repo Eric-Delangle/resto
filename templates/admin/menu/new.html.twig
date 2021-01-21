@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau menu
+{% endblock %}
+
+{% block body %}
+	<h1 class="text-center mt-3">Créer un menu</h1>
+	<div class="container">
+		{{ include('admin/menu/_form.html.twig') }}
+
+		<button class="btn btn-primary mt-2">
+			<a style="color: white; text-decoration: none;" href="{{ path('menu_admin_index') }}">Retour à la liste des menus</a>
+		</button>
+	</div>
+
+{% endblock %}

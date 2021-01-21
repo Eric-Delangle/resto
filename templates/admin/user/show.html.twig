@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Client
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1 class="text-center mt-5">Client</h1>
+
+		<table class="table mt-5">
+			<tbody>
+
+				<tr>
+					<th>Prénom</th>
+					<td>{{ user.firstName }}</td>
+				</tr>
+				<tr>
+					<th>Nom</th>
+					<td>{{ user.lastName }}</td>
+				</tr>
+				<tr>
+					<th>Adresse</th>
+					<td>{{ user.address }}</td>
+				</tr>
+				<tr>
+					<th>Ville</th>
+					<td>{{ user.city }}</td>
+				</tr>
+				<tr>
+					<th>Téléphone</th>
+					<td>{{ user.tel }}</td>
+				</tr>
+				<tr>
+					<th>Email</th>
+					<td>{{ user.email }}</td>
+				</tr>
+				<tr>
+					<th>Enregistré le</th>
+					<td>{{ user.registeredAt ? user.registeredAt|date('\\l\\e d-m-y \\à H:i') : '' }}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<button class="btn btn-primary">
+			<a style="color:white; text-decoration:none;" href="{{ path('user_admin_index') }}">Retour à la liste des clients</a>
+		</button>
+
+		<p class="mt-2">{{ include('admin/user/_delete_form.html.twig') }}</p>
+
+	</div>
+{% endblock %}

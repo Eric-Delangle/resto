@@ -14,3 +14,8 @@ body {
   top: 400px;
   z-index: 9;
 }
+
+.bouton a {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}

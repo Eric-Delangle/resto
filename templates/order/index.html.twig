@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commandes
+{% endblock %}
+
+{% block body %}
+	<h1 class="text-center mt-5">Vos commandes</h1>
+	<div class="container mt-5">
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Menu</th>
+					<th>Heure et date de la commande</th>
+					<th>Quantité</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for order in orders %}
+					<tr>
+						<td>{{ order.name }}</td>
+						<td>{{ order.registeredAt ? order.registeredAt|date('\\à H:i \\l\\e d/m/y') : '' }}</td>
+						<td>{{ order.quantity }}</td>
+						<td>
+							<button class="btn btn-primary">
+								<a style="color:white; text-decoration:none;" href="{{ path('order_show', {'id': order.id}) }}">Voir la commande</a>
+							</button>
+							<button class="btn btn-warning">
+								<a style="color:white; text-decoration:none;" href="{{ path('order_edit', {'id': order.id}) }}">modifier la commande</a>
+							</button>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="3">Vous n'avez pas de commande.</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<button class="btn btn-success">
+			<a style="color:white; text-decoration:none;" href="{{ path('member_account') }}">Retour à l'administration</a>
+		</button>
+
+	</div>
+
+
+{% endblock %}
