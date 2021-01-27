@@ -32,7 +32,6 @@ class MemberController extends AbstractController
         $commande = $purchaseRepo->findBy(['user' => $user]); //retourne toutes les commandes
 
 
-        $menu = $menuRepo->findAll();
 
         if ($commande != [] || $commande == null) {
             //si il y a une commande je l'envoi à la vue

@@ -76,7 +76,12 @@ class AppFixtures extends Fixture
             $purchase->setUser($user);
             $purchase->setQuantity(mt_rand(1, 5));
             $purchase->setRegisteredAt($faker->dateTimeBetween($startDate = '-6 months', $endDate = 'now'));
-            //  $purchase->setMenu($faker->randomElement($menus));
+
+            $selectedMenus = $faker->randomElements($menus, mt_rand(3, 5));
+
+            foreach ($selectedMenus as $menu) {
+                $purchase->addMenu($menu);
+            }
 
             $manager->persist($purchase);
         }

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier une commande.
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1 class="text-center mt-5">Modifier la commande</h1>
+
+		{{ include('admin/purchase/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+		<a href="{{ path('purchase_admin_index') }}">Retour à la liste des commandes</a>
+
+		{{ include('admin/purchase/_delete_form.html.twig') }}
+
+	</div>
+
+{% endblock %}

@@ -6,7 +6,8 @@
 {% block body %}
 	<div class="container">
 		<h1 class="text-center mt-3">Commandez votre menu !</h1>
-
+		{{ dump(order)}}
+		{{ dump(form)}}
 		<div classe="text-center mt-5">
 			<h2 class="text-center">{{ menu.name }}</h2>
 			<p class="text-center mt-3">{{ menu.entree }}</p>
@@ -18,6 +19,8 @@
 				{{ menu.price }}</p>
 
 		</div>
+
+
 		<div class="text-center">
 			{{ include('order/_form.html.twig') }}
 

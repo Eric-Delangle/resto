@@ -23,7 +23,7 @@ class Purchase
 
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=User::class)
      */
     private $user;
 
@@ -38,15 +38,17 @@ class Purchase
     private $registeredAt;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Menu::class, inversedBy="purchase")
+     * @ORM\ManyToMany(targetEntity=Menu::class, inversedBy="purchases")
      */
     private $menu;
-
 
     public function __construct()
     {
         $this->menu = new ArrayCollection();
     }
+
+
+
 
     public function getId(): ?int
     {
@@ -101,7 +103,6 @@ class Purchase
     {
         if (!$this->menu->contains($menu)) {
             $this->menu[] = $menu;
-            $menu->setPurchase($this);
         }
 
         return $this;
@@ -109,13 +110,13 @@ class Purchase
 
     public function removeMenu(Menu $menu): self
     {
-        if ($this->menu->removeElement($menu)) {
-            // set the owning side to null (unless already changed)
-            if ($menu->getPurchase() === $this) {
-                $menu->setPurchase(null);
-            }
-        }
+        $this->menu->removeElement($menu);
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->menu;
     }
 }

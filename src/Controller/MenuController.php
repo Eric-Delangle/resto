@@ -6,6 +6,7 @@ use App\Entity\Menu;
 use App\Form\MenuType;
 use Cocur\Slugify\Slugify;
 use App\Repository\MenuRepository;
+use App\Repository\PurchaseRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -65,8 +66,8 @@ class MenuController extends AbstractController
                 $entityManager->persist($menu);
 
                 $entityManager->flush();
-
-                return $this->redirectToRoute('menu_index');
+                $this->addFlash('success', 'Votre menu a bien été créé.');
+                return $this->redirectToRoute('menu_admin_index');
             }
             return $this->render('admin/menu/new.html.twig', [
                 'user' => $user,
@@ -95,8 +96,8 @@ class MenuController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('menu_index');
+            $this->addFlash('success', 'Votre menu a bien été modifié.');
+            return $this->redirectToRoute('menu_admin_index');
         }
 
         return $this->render('admin/menu/edit.html.twig', [
@@ -114,6 +115,7 @@ class MenuController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($menu);
             $entityManager->flush();
+            $this->addFlash('success', 'Votre menu a bien été supprimé.');
         }
 
         return $this->redirectToRoute('menu_admin_index');

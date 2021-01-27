@@ -3,8 +3,10 @@
 namespace App\Entity;
 
 use App\Entity\Purchase;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\MenuRepository;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @ORM\Entity(repositoryClass=MenuRepository::class)
@@ -61,9 +63,16 @@ class Menu
     private $slug;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Purchase::class, mappedBy="menu")
+     * @ORM\ManyToMany(targetEntity=Purchase::class, mappedBy="menu",cascade={"remove"})
      */
-    private $purchase;
+    private $purchases;
+
+    public function __construct()
+    {
+        $this->purchases = new ArrayCollection();
+    }
+
+
 
 
     public function getId(): ?int
@@ -173,14 +182,29 @@ class Menu
         return $this->name;
     }
 
-    public function getPurchase(): ?Purchase
+    /**
+     * @return Collection|Purchase[]
+     */
+    public function getPurchases(): Collection
     {
-        return $this->purchase;
+        return $this->purchases;
     }
 
-    public function setPurchase(?Purchase $purchase): self
+    public function addPurchase(Purchase $purchase): self
     {
-        $this->purchase = $purchase;
+        if (!$this->purchases->contains($purchase)) {
+            $this->purchases[] = $purchase;
+            $purchase->addMenu($this);
+        }
+
+        return $this;
+    }
+
+    public function removePurchase(Purchase $purchase): self
+    {
+        if ($this->purchases->removeElement($purchase)) {
+            $purchase->removeMenu($this);
+        }
 
         return $this;
     }
