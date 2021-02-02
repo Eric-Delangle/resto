@@ -26,24 +26,52 @@
 							{{ item.fromage}}
 							{{ item.dessert}}
 							{{ item.boisson}}
-							{{ item.price}}
-
+							<p>{{ item.price }}
+								€</p>
 						</div>
 					{% endfor %}
+
+					<p class="text-center mt-3">Heure et date de la commande :
+						{{ achat.registeredAt ? achat.registeredAt|date('\\à H:i \\l\\e d/m/y') : '' }}</p>
+
 					<p class="text-center mt-3">Quantité :
 						{{ achat.quantity}}</p>
-					<p class="text-center">
-						<button class="btn btn-danger btn-sm">
-							<a style="color:white; text-decoration:none;" href="{{ path('purchase_delete', {'id': achat.id}) }}">Annuler cette commande</a>
-						</button>
+
+					<p class="text-center mt-3">Total :
+						<strong>{{ achat.total}}
+							€</strong>
 					</p>
+					<p class="text-center">
 
+						{% if achat.status == "PENDING"%}
 
+							<button class="btn btn-danger">
+								<a style="color: white; text-decoration:none;" href="{{ path('purchase_edit', {'id': achat.id}) }}">Annuler ou modifier cette commande</a>
+							</button>
+							<button type="submit" class="btn btn-success">
+								<a style="color: white; text-decoration:none;" href="{{ path('payment_stripe', {'id': achat.id}) }}">Payer cette commande</a>
+							</button>
+						{% endif %}
+						{% if achat.status == "PAID"%}
+							Cette commande a été réglée.
+						{% endif %}
+					</p>
+					<hr>
 				{% endfor %}
-
 
 			{% else %}
 				<p class="text-center mt-5">Vous n'avez pas de commande en cours.</p>
+			{% endif %}
+
+			{% if commande != []  %}
+				<p class="text-center mt-5">
+					<i class="fas fa-shopping-basket"></i>
+
+					Total de toutes vos commandes =
+					<strong>{{ total * 100}}
+						€</strong>
+				</p>
+
 			{% endif %}
 
 		</div>
@@ -62,8 +90,6 @@
 				<a style="color: white; text-decoration:none;" href="{{ path('user_edit', {'id': user.id }) }}">Modifier vos informations</a>
 			</button>
 		</div>
-
-
 	</div>
 
 {% endblock %}

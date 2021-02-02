@@ -3,17 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Menu;
-use App\Entity\Order;
-use App\Form\OrderType;
 use Symfony\Component\Form\AbstractType;
-use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+
 
 class MenuType extends AbstractType
 {

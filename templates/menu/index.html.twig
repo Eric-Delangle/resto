@@ -6,31 +6,35 @@
 {% block body %}
 <h1 class="text-center mt-5">Les menus</h1>
 <div class="container mt-5">
+	<div class="row justify-content-around responsive">
+		<ul style="padding:0;">
+			{% for menu in menus %}
+				<li style="list-style-type: none;" class="text-center">
+					<p>
+						<h3 style="line-height: 0.5;">{{ menu.name | capitalize }}</h3>
+					</p>
+					<br>
+					<p>{{ menu.entree | capitalize }}</p>
+					<p>{{ menu.plat | capitalize }}</p>
+					<p>{{ menu.fromage | capitalize }}</p>
+					<p>{{ menu.dessert | capitalize }}</p>
+					<p>{{ menu.boisson | capitalize }}</p>
+					<p>
+						<strong>{{ menu.price }}
+							€
+						</strong>
+					</p>
 
-	{{dump(menus)}}
-	{% for menu in menus %}
-
-		<p>
-			<h3>{{ menu.name | capitalize }}</h3>
-		</p>
-		<p>{{ menu.entree | capitalize }}</p>
-		<p>{{ menu.plat | capitalize }}</p>
-		<p>{{ menu.fromage | capitalize }}</p>
-		<p>{{ menu.dessert | capitalize }}</p>
-		<p>{{ menu.boisson | capitalize }}</p>
-		<p>
-			<strong>{{ menu.price }}</strong>
-		</p>
-
-		<p>
-			<button class=" btn btn-success btn-sm bouton">
-				<a href="{{ path('purchase_new', {'id': menu.id}) }}">Commander</a>
-			</button>
-
-		</p>
-
-	</p>
+					<p>
+						<button class=" btn btn-success btn-sm bouton ml-2">
+							<a href="{{ path('purchase_new', {'id': menu.id}) }}">Commander</a>
+						</button>
+					</p>
+				</li>
+			</p>
+		</li>
+	</ul>
 {% else %}
 
 	<p colspan="9 text-center">Pas encore de menu créé.</p>
-</p>{% endfor %}</div>{% endblock %}
+</p>{% endfor %}</div></div>{% endblock %}

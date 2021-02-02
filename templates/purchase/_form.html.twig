@@ -1,10 +1,7 @@
 {{ form_start(form) }}
-{# 
-{{ form_row(form.name, {'label': 'Menu','attr': {'placeholder': "Le menu"}}) }}
-{{ form_row(form.quantity, {'label': 'Quantité','attr': {'placeholder': "Quantité"}}) }}
-{{ form_row(form.user, {'label': 'Client'}) }}
-#}
-{{ form_widget(form)}}
 
+{{ form_row(form.quantity, {'label': 'Quantité','attr': {'placeholder': "Sélectonnez le nombre de menu(s) souhaité(s)"}}) }}
+
+{{ form_widget(form)}}
 <button class="btn btn-success">{{ button_label|default('Lancer la commande') }}</button>
 {{ form_end(form) }}

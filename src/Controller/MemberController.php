@@ -4,9 +4,9 @@ namespace App\Controller;
 
 use App\Repository\MenuRepository;
 use App\Repository\PurchaseRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 class MemberController extends AbstractController
@@ -15,12 +15,15 @@ class MemberController extends AbstractController
     /**
      * Affiche un espace membre
      * @Route("/member/account", name="member_account")
+     * @IsGranted("ROLE_USER")
      */
     public function space(PurchaseRepository $purchaseRepo, MenuRepository $menuRepo)
     {
 
         $user = $this->getUser();
         $role = $user->getRoles();
+        $sommes = [];
+
         if ($role[0] == "ROLE_ADMIN") {
 
             return $this->render('admin/index.html.twig', [
@@ -28,16 +31,37 @@ class MemberController extends AbstractController
 
             ]);
         }
-        // $menu = $menuRepo->findAll();
-        $commande = $purchaseRepo->findBy(['user' => $user]); //retourne toutes les commandes
+
+        // affichage du total de toutes les commandes
+        $purchases = $purchaseRepo->findBy(['user' => $user]); //retourne toutes les commandes
 
 
+        for ($m = 0; $m < count($purchases); $m++) {
 
-        if ($commande != [] || $commande == null) {
+            $commande = $purchases[$m]->getMenu(); // la j'ai le menu de la commande 
+
+            $quantity = $purchases[$m]->getQuantity(); // la j'ai la quantité par menu
+
+            // je vais chercher le prix de chaque commande
+            foreach ($commande as $prixmenu) {
+                $somme = 0;
+                $menuPrice = $prixmenu->getPrice() / 100;
+                $somme += $menuPrice * $quantity;
+                $sommes[] = $somme;
+            }
+        }
+
+        $totalAmount = array_sum($sommes);
+
+        // fin
+
+
+        if ($purchases != [] || $purchases == null) {
             //si il y a une commande je l'envoi à la vue
             return $this->render('member/account.html.twig', [
+                'total' => $totalAmount,
                 'user' => $user,
-                'commande' => $commande,
+                'commande' => $purchases,
             ]);
         }
         // sinon je lui envoi uniquement l'user

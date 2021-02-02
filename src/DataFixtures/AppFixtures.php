@@ -28,13 +28,14 @@ class AppFixtures extends Fixture
         $faker = Faker\Factory::create('fr_FR');
         $slugify = new Slugify();
         $menus = [];
+        $users = [];
         $menuName = ['Le gourmand', 'Le gourmet', 'La fringale', 'Le repus', 'La grosse faim'];
         $entreeName = ['Salade de chèvre chaud', 'Delice de la mer', 'Ribambelle de légumes', 'Oeuf mimoza'];
         $platName = ['Frites saucisses', 'Hamburger maison', 'Ratatouille', 'spaghettis Bolognaise', 'Raclette'];
         $fromageName = ['Camenbert', 'Gruyère', 'Roquefort', 'Chèvre', 'Gouda'];
         $dessertName = ['Flan', 'Fondant au chocolat', 'Tarte tatin', 'Profiteroles', 'Banana split'];
         $boissonName = ['Eau minérale', 'Vin', 'Bière', 'Vin', 'Soda'];
-        $priceName = ['20 €', '30 €', '15 €', '10 €', '40 €'];
+        $priceName = [20, 30, 15, 10, 40];
 
         for ($u = 0; $u < 30; $u++) {
             $user = new User;
@@ -50,13 +51,15 @@ class AppFixtures extends Fixture
             $user->setAddress($faker->address());
             $user->setTel($faker->phoneNumber());
             $user->setRegisteredAt($faker->dateTimeBetween($startDate = '-6 months', $endDate = 'now'));
+            $users[] = $user;
             $manager->persist($user);
         }
 
-        for ($m = 0; $m < 15; $m++) {
-            $menu = new Menu;
 
-            $menu->setName($faker->randomElement($menuName));
+
+        foreach ($menuName as $name) {
+            $menu = new Menu;
+            $menu->setName($name);
             $menu->setEntree($faker->randomElement($entreeName));
             $menu->setPlat($faker->randomElement($platName));
             $menu->setFromage($faker->randomElement($fromageName));
@@ -70,12 +73,18 @@ class AppFixtures extends Fixture
         }
 
 
-        for ($o = 0; $o < mt_rand(1, 5); $o++) {
+
+        for ($p = 0; $p < 15; $p++) {
 
             $purchase = new Purchase;
-            $purchase->setUser($user);
+            $purchase->setUser($faker->randomElement($users));
             $purchase->setQuantity(mt_rand(1, 5));
             $purchase->setRegisteredAt($faker->dateTimeBetween($startDate = '-6 months', $endDate = 'now'));
+            $purchase->setTotal(mt_rand(2000, 30000));
+
+            if ($faker->boolean(90)) {
+                $purchase->setStatus(Purchase::STATUS_PAID);
+            }
 
             $selectedMenus = $faker->randomElements($menus, mt_rand(3, 5));
 

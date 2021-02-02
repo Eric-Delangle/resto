@@ -5,14 +5,20 @@
 
 {% block body %}
 	<div class="container">
-		<h1 class="text-center mt-5">Modifier la commande</h1>
 
-		{{ include('order/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+		{% for item in order.menu %}
+			<h1 class="text-center mt-5">Modifier ou annuler la commande :
+				{{ item.name }}</h1>
+		{% endfor %}
+		<div class="container mt-5">
+			{{ include('purchase/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
-		<a href="{{ path('order_index') }}">Retour à la liste des commandes</a>
+			<button class="btn btn-primary mt-3">
+				<a style="color: white; text-decoration:none;" href="{{ path('member_account') }}">Retour à votre compte</a>
+			</button>
 
-		{{ include('order/_delete_form.html.twig') }}
-
+			<p class="mt-2">{{ include('purchase/_delete_form.html.twig') }}</p>
+		</div>
 	</div>
 
 {% endblock %}

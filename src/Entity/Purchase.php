@@ -10,10 +10,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass=PurchaseRepository::class)
- * @ORM\Table(name="`order`")
+ * @ORM\Table(name="`purchase`")
  */
 class Purchase
 {
+
+    public const STATUS_PENDING = 'PENDING';
+    public const STATUS_PAID = 'PAID';
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -24,6 +28,7 @@ class Purchase
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class)
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $user;
 
@@ -41,6 +46,17 @@ class Purchase
      * @ORM\ManyToMany(targetEntity=Menu::class, inversedBy="purchases")
      */
     private $menu;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $total;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $status = 'PENDING';
+
 
     public function __construct()
     {
@@ -118,5 +134,29 @@ class Purchase
     public function __toString()
     {
         return $this->menu;
+    }
+
+    public function getTotal(): ?int
+    {
+        return $this->total;
+    }
+
+    public function setTotal(int $total): self
+    {
+        $this->total = $total;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): self
+    {
+        $this->status = $status;
+
+        return $this;
     }
 }

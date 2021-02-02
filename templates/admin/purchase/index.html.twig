@@ -16,46 +16,66 @@
 					<th>Client</th>
 					<th>Heure et date de la commande</th>
 					<th>Quantité</th>
+					<th>Total</th>
+					<th>Status</th>
 					<th></th>
 				</tr>
 			</thead>
 			<tbody>
 
-				{% for order in orders %}
 
+				{% for order in orders %}
 
 					<tr>
 						{% for item in order.menu %}
 
-							<td>{{ item.name }}</td>
+							<td>
+								<p>{{ item.name | nl2br}}
+								</p>
+							</td>
+
 						{% endfor %}
 
+						{% if order.user %}
+							<td>{{ order.user.firstName }}
+								{{ order.user.lastName }}</td>
+						{% else %}
+							<td>Ce client a supprimé son compte</td>
+						{% endif %}
 
-						<td>{{ user.firstName }}
-							{{ user.lastName }}</td>
 
 						<td>{{ order.registeredAt ? order.registeredAt|date('\\à H:i \\l\\e d/m/y') : '' }}</td>
 						<td>{{ order.quantity }}</td>
+						<td>{{ order.total }}
+							€</td>
 						<td>
-							<button class="btn btn-primary">
-								<a style="color:white; text-decoration:none;" href="{{ path('purchase_admin_show', {'id': order.id}) }}">Voir la commande</a>
-							</button>
+							{% if order.status == "PAID" %}
+								<span class="badge badge-success">
+									{{ 'Payée' | trans({'%fr%': order.status })}}
+								</span>
+							{% else %}
+								<span class="badge badge-danger">
+									{{ 'En attente' | trans({'%fr%': order.status })}}
+								</span>
+							{% endif %}
+						</td>
+						<td>
+
 							<button class="btn btn-warning">
 								<a style="color:white; text-decoration:none;" href="{{ path('purchase_admin_edit', {'id': order.id}) }}">modifier la commande</a>
 							</button>
 						</td>
 					</tr>
+
 				{% else %}
+
 					<tr>
 						<td colspan="3">Vous n'avez pas de commande.</td>
 					</tr>
-
 				{% endfor %}
 			</tbody>
-		</table>
+		</tbody>
+	</table>
 
 
-	</div>
-
-
-{% endblock %}
+</div>{% endblock %}

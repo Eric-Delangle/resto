@@ -4,7 +4,8 @@
 {% endblock %}
 
 {% block body %}
-	<h1 class="text-center mt-3">Modifier le menu</h1>
+	<h1 class="text-center mt-3">Modifier le menu :
+		{{ menu.name }}</h1>
 	<div class="container">
 		{{ include('admin/menu/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
 

@@ -19,3 +19,178 @@ body {
   color: #ffffff !important;
   text-decoration: none !important;
 }
+
+#smartphone {
+  display: none;
+}
+
+.ul {
+  padding: 0 !important;
+}
+
+/* si je mets ça les liens ne sont plus affichés dans la navbar
+a {
+  color: white !important;
+  text-decoration: none !important;
+}
+*/
+
+/* --  ==== MEDIAQUERIES ====  -- */
+
+@media all and (max-width: 1366px) {
+  /* ipad pro */
+
+  .navbar-collapse {
+    max-width: 100%;
+  }
+
+  #smartphone {
+    display: block;
+    font-size: 2em;
+    margin-top: 250px;
+  }
+
+  .container-fluid {
+    margin-left: auto !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    margin-right: auto !important;
+  }
+
+  /* Les bulles */
+  #bulledroite {
+    position: absolute;
+    z-index: 9;
+    left: 70px;
+    top: 750px;
+  }
+
+  #bullegauche {
+    position: absolute;
+    left: 500px;
+    top: 750px;
+    z-index: 9;
+  }
+
+  #bullegauche img {
+    width: 300px;
+  }
+
+  #bulledroite img {
+    width: 300px;
+  }
+
+  .ul {
+    padding: 0 !important;
+  }
+}
+
+@media all and (max-width: 1024px) {
+  /* ipad */
+
+  .ul {
+    padding: 0 !important;
+  }
+
+  .navbar-collapse {
+    max-width: 100%;
+  }
+
+  #smartphone {
+    display: block;
+    font-size: 2em;
+    margin-top: 250px;
+  }
+  /* je change la taille des images */
+
+  /* pour afficher les menus en colonne */
+  .responsive {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container-fluid {
+    margin-left: auto !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    margin-right: auto !important;
+  }
+
+  /* Les bulles */
+  #bulledroite {
+    position: absolute;
+    z-index: 9;
+    left: 70px;
+    top: 750px;
+  }
+
+  #bullegauche {
+    position: absolute;
+    left: 400px;
+    top: 750px;
+    z-index: 9;
+  }
+
+  #bullegauche img {
+    width: 300px;
+  }
+
+  #bulledroite img {
+    width: 300px;
+  }
+}
+
+@media all and (max-device-width: 480px) {
+  /* smartphone */
+
+  /* pour afficher les menus en colonne */
+  .responsive {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #smartphone {
+    display: block;
+    font-size: 1em;
+    margin-top: 180px;
+  }
+  /* je change la taille des images */
+  .w-100 {
+    width: 150% !important;
+    height: 150% !important;
+    object-fit: contain;
+  }
+  .container-fluid {
+    margin-left: auto !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    margin-right: auto !important;
+  }
+
+  /* Les bulles */
+  #bulledroite {
+    position: absolute;
+    z-index: 9;
+    left: 10px;
+    top: 750px;
+  }
+
+  #bullegauche {
+    position: absolute;
+    left: 200px;
+    top: 750px;
+    z-index: 9;
+  }
+
+  #bullegauche img {
+    width: 200px;
+  }
+
+  #bulledroite img {
+    width: 200px;
+  }
+
+  .ul {
+    padding: 0 !important;
+  }
+}
