@@ -13,12 +13,12 @@
     "license": "UNLICENSED",
     "private": true,
     "scripts": {
+        "npm_upgrade":"npm upgrade -g",
         "dev-server": "encore dev-server",
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress",
         "compile": "npm run dev",
-        
-      "postinstall": "encore production --progress"
+    
     }
 }
