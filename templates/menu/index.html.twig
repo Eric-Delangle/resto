@@ -6,8 +6,8 @@
 {% block body %}
 <h1 class="text-center mt-5">Les menus</h1>
 <div class="container mt-5">
-	<div class="row justify-content-around responsive">
-		<ul style="padding:0;">
+	<div>
+		<ul style="padding:0;" class="row justify-content-around responsive">
 			{% for menu in menus %}
 				<li style="list-style-type: none;" class="text-center">
 					<p>
@@ -33,8 +33,9 @@
 				</li>
 			</p>
 		</li>
-	</ul>
-{% else %}
 
-	<p colspan="9 text-center">Pas encore de menu créé.</p>
-</p>{% endfor %}</div></div>{% endblock %}
+	{% else %}
+
+		<p colspan="9 text-center">Pas encore de menu créé.</p>
+	</p>
+</ul>{% endfor %}</div></div>{% endblock %}

@@ -6,23 +6,23 @@
 {% block body %}
 	<div class="container">
 
-		<h1 class="text-center">Liste des clients</h1>
-		<button class="btn btn-warning">
+		<h1 class="text-center mt-3">Liste des clients</h1>
+		<button class="btn btn-warning mt-3">
 			<a class="text-center" style="color:white; text-decoration:none;" href="{{ path('member_account') }}">Accueil de l'adminstration</a>
 		</button>
-		<table class="table mt-3">
+		<table class="table mt-5">
 			<thead>
 				<tr>
 
 					<th>Email</th>
 
 
-					<th>Prénom</th>
-					<th>Nom</th>
-					<th>Adresse</th>
-					<th>Ville</th>
-					<th>Tel</th>
-					<th>Inscrit</th>
+					<th class="event-date">Prénom</th>
+					<th class="event-date">Nom</th>
+					<th class="event-date">Adresse</th>
+					<th class="event-date">Ville</th>
+					<th class="event-date">Tel</th>
+					<th class="event-date">Inscrit</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -31,27 +31,24 @@
 				{% for user in users %}
 					<tr>
 
-						<td>{{ user.email }}</td>
-
-
-						<td>{{ user.firstName }}</td>
-						<td>{{ user.lastName }}</td>
-						<td>{{ user.address }}</td>
-						<td>{{ user.city }}</td>
-						<td>{{ user.tel }}</td>
-						<td>{{ user.registeredAt ? user.registeredAt|date('\\l\\e d-m-y \\à H:i') : '' }}</td>
-						<td>
-							<button class="btn btn-success">
-								<a style="color:white; text-decoration:none;" href="{{ path('user_admin_show', {'id': user.id}) }}">Voir les informations du client</a>
-							</button>
-						</td>
-					</tr>
-				{% else %}
-					<tr>
-						<td colspan="12">no records found</td>
-					</tr>
-				{% endfor %}
-
+						<td{{user.firstName}}</td data-label="Email" {{ user.email }} </td> <td data-label="Prénom">>
+							<td data-label="Nom">{{ user.lastName }}</td>
+							<td data-label="Adresse">{{ user.address }}</td>
+							<td data-label="Ville">{{ user.city }}</td>
+							<td data-label="Téléphone">{{ user.tel }}</td>
+							<td data-label="Enregistré le">{{ user.registeredAt ? user.registeredAt|date('\\l\\e d-m-y \\à H:i') : '' }}</td>
+							<td data-label="Profil">
+								<button class="btn btn-success">
+									<a style="color:white; text-decoration:none;" href="{{ path('user_admin_show', {'id': user.id}) }}">Voir les informations du client</a>
+								</button>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="12" data-label="Vide">Aucun client trouvé.</td>
+						</tr>
+					{% endfor %}
+				</tbody>
 			</tbody>
 		</table>
 

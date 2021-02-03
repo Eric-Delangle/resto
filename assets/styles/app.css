@@ -193,4 +193,28 @@ a {
   .ul {
     padding: 0 !important;
   }
+
+  /* partie administration */
+  @media (max-width: 700px) {
+    .table thead {
+      display: none;
+    }
+    .table tr {
+      display: block;
+      margin-bottom: 40px;
+    }
+    .table td {
+      display: block;
+      text-align: right;
+    }
+    .table td:before {
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+    }
+  }
+
+  .btn-warning {
+    margin-top: 5px;
+  }
 }

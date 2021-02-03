@@ -6,18 +6,18 @@
 {% block body %}
 	<h1 class="text-center mt-5">Vos commandes</h1>
 	<div class="container mt-5">
-		<button class="btn btn-success">
+		<button class="btn btn-success responsive_admin">
 			<a style="color:white; text-decoration:none;" href="{{ path('member_account') }}">Accueil de l'administration</a>
 		</button>
 		<table class="table mt-3">
 			<thead>
 				<tr>
-					<th>Menu</th>
-					<th>Client</th>
-					<th>Heure et date de la commande</th>
-					<th>Quantité</th>
-					<th>Total</th>
-					<th>Status</th>
+					<th class="event-date">Menu</th>
+					<th class="event-date">Client</th>
+					<th class="event-date">Heure et date de la commande</th>
+					<th class="event-date">Quantité</th>
+					<th class="event-date">Total</th>
+					<th class="event-date">Status</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -29,7 +29,7 @@
 					<tr>
 						{% for item in order.menu %}
 
-							<td>
+							<td data-label="Menu">
 								<p>{{ item.name | nl2br}}
 								</p>
 							</td>
@@ -37,18 +37,18 @@
 						{% endfor %}
 
 						{% if order.user %}
-							<td>{{ order.user.firstName }}
+							<td data-label="Client">{{ order.user.firstName }}
 								{{ order.user.lastName }}</td>
 						{% else %}
-							<td>Ce client a supprimé son compte</td>
+							<td data-label="Anonyme">Ce client a supprimé son compte</td>
 						{% endif %}
 
 
-						<td>{{ order.registeredAt ? order.registeredAt|date('\\à H:i \\l\\e d/m/y') : '' }}</td>
-						<td>{{ order.quantity }}</td>
-						<td>{{ order.total }}
+						<td data-label="Heure et date">{{ order.registeredAt ? order.registeredAt|date('\\à H:i \\l\\e d/m/y') : '' }}</td>
+						<td data-label="Quantité">{{ order.quantity }}</td>
+						<td data-label="Total">{{ order.total }}
 							€</td>
-						<td>
+						<td data-label="Status">
 							{% if order.status == "PAID" %}
 								<span class="badge badge-success">
 									{{ 'Payée' | trans({'%fr%': order.status })}}
@@ -59,7 +59,7 @@
 								</span>
 							{% endif %}
 						</td>
-						<td>
+						<td data-label="Modification">
 
 							<button class="btn btn-warning">
 								<a style="color:white; text-decoration:none;" href="{{ path('purchase_admin_edit', {'id': order.id}) }}">modifier la commande</a>
@@ -70,7 +70,7 @@
 				{% else %}
 
 					<tr>
-						<td colspan="3">Vous n'avez pas de commande.</td>
+						<td colspan="3" data-label="Vide">Vous n'avez pas de commande.</td>
 					</tr>
 				{% endfor %}
 			</tbody>
