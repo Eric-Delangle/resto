@@ -11,8 +11,10 @@
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
 		{% block stylesheets %}
-			{{ encore_entry_link_tags('app') }}
-		{% endblock %}
+			{# config en local #}
+			{#{{ encore_entry_link_tags('app') }}#}
+			{# config pour heroku #}
+		<link rel="stylesheet" href="{{ asset('build/app.css') }}"> {% endblock %}
 		<title>
 			{% block title %}Welcome!
 			{% endblock %}
@@ -26,7 +28,9 @@
 			</div>
 		{% endfor %}
 		{% block body %}{% endblock %}
-		{% block javascripts %}{% endblock %}
+		{% block javascripts %}{# peut etre pour heroku #}
+			{# {{ encore_entry_script_tags('app') }} #}
+		{% endblock %}
 		{% if app.user %}
 			<script>
 				document.getElementById('inscription').style.display = 'none';
