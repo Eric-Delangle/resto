@@ -73,7 +73,8 @@ class AppFixtures extends Fixture
         }
 
 
-
+        // pas de fixtures de commandes pour heroku , bug pas encore réglé
+        /*
         for ($p = 0; $p < 15; $p++) {
 
             $purchase = new Purchase;
@@ -94,7 +95,7 @@ class AppFixtures extends Fixture
 
             $manager->persist($purchase);
         }
-
+*/
 
 
         $manager->flush();
