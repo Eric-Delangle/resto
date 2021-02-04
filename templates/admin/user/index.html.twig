@@ -14,9 +14,7 @@
 			<thead>
 				<tr>
 
-					<th>Email</th>
-
-
+					<th class="event-date">Email</th>
 					<th class="event-date">Prénom</th>
 					<th class="event-date">Nom</th>
 					<th class="event-date">Adresse</th>
@@ -31,32 +29,30 @@
 				{% for user in users %}
 					<tr>
 
-						<td{{user.firstName}}</td data-label="Email" {{ user.email }} </td> <td data-label="Prénom">>
-							<td data-label="Nom">{{ user.lastName }}</td>
-							<td data-label="Adresse">{{ user.address }}</td>
-							<td data-label="Ville">{{ user.city }}</td>
-							<td data-label="Téléphone">{{ user.tel }}</td>
-							<td data-label="Enregistré le">{{ user.registeredAt ? user.registeredAt|date('\\l\\e d-m-y \\à H:i') : '' }}</td>
-							<td data-label="Profil">
-								<button class="btn btn-success">
-									<a style="color:white; text-decoration:none;" href="{{ path('user_admin_show', {'id': user.id}) }}">Voir les informations du client</a>
-								</button>
-							</td>
-						</tr>
-					{% else %}
-						<tr>
-							<td colspan="12" data-label="Vide">Aucun client trouvé.</td>
-						</tr>
-					{% endfor %}
-				</tbody>
+						<td data-label="Email">{{ user.email }}</td>
+						<td data-label="Prénom">{{user.firstName}}</td>
+						<td data-label="Nom">{{ user.lastName }}</td>
+						<td data-label="Adresse">{{ user.address }}</td>
+						<td data-label="Ville">{{ user.city }}</td>
+						<td data-label="Téléphone">{{ user.tel }}</td>
+						<td data-label="Enregistré le">{{ user.registeredAt ? user.registeredAt|date('\\l\\e d-m-y \\à H:i') : '' }}</td>
+						<td data-label="Profil">
+							<button class="btn btn-success">
+								<a style="color:white; text-decoration:none;" href="{{ path('user_admin_show', {'id': user.id}) }}">Voir les informations du client</a>
+							</button>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="12" data-label="Vide">Aucun client trouvé.</td>
+					</tr>
+				{% endfor %}
 			</tbody>
-		</table>
+		</tbody>
+	</table>
 
-		<div class="pagination">
+	<div class="pagination">
 
-			{{ knp_pagination_render (users)}}
-		</div>
+		{{ knp_pagination_render (users)}}
 	</div>
-
-
-{% endblock %}
+</div>{% endblock %}
