@@ -225,4 +225,8 @@ a {
   .btn-warning {
     margin-top: 5px;
   }
+
+  .smartphone {
+    font-size: 1em;
+  }
 }
