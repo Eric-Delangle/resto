@@ -15,6 +15,14 @@ body {
   z-index: 9;
 }
 
+#bullegauche img {
+  width: 200px;
+}
+
+#bulledroite img {
+  width: 200px;
+}
+
 .bouton a {
   color: #ffffff !important;
   text-decoration: none !important;
