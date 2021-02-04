@@ -37,16 +37,16 @@
 						{% endfor %}
 
 						{% if order.user %}
-							<td data-label="Client">{{ order.user.firstName }}
-								{{ order.user.lastName }}</td>
+							<td data-label="Client">{{ order.user.firstName | capitalize }}
+								{{ order.user.lastName | capitalize }}</td>
 						{% else %}
 							<td data-label="Anonyme">Ce client a supprimé son compte</td>
 						{% endif %}
 
 
 						<td data-label="Heure et date">{{ order.registeredAt ? order.registeredAt|date('\\à H:i \\l\\e d/m/y') : '' }}</td>
-						<td data-label="Quantité">{{ order.quantity }}</td>
-						<td data-label="Total">{{ order.total }}
+						<td data-label="Quantité" class="text-center">{{ order.quantity }}</td>
+						<td data-label="Total" class="text-center">{{ order.total }}
 							€</td>
 						<td data-label="Status">
 							{% if order.status == "PAID" %}
