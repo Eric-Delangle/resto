@@ -84,7 +84,6 @@ class PurchaseController extends AbstractController
 
     /**
      * @Route("/new{id}", name="purchase_new")
-     * @IsGranted("ROLE_USER")
      */
     public function new($id, Request $request, MenuRepository $menurepo, PurchaseRepository $purchaseRepo, EntityManagerInterface $em): Response
     {
