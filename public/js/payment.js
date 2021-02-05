@@ -32,7 +32,9 @@ document.querySelector("button").disabled = event.empty;
 document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
 });
 const form = document.getElementById("payment-form");
+console.log(form);
 form.addEventListener("submit", function (event) {
+  
 event.preventDefault();
 // Completer le paiement si le bouton submit est cliqué
 stripe.confirmCardPayment(clientSecret, {
