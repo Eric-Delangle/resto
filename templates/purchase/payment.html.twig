@@ -5,14 +5,14 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container text-center mt-5">
-		<h1>Payez votre commande avec stripe.</h1>
+	<div class="container text-center mt-5 block_paiement">
+		<h1>Payez votre commande par carte bancaire.</h1>
 
-		<form id="payment-form">
+		<form id=" payment-form" class=" paiement mt-5">
 			<div id="card-element" class="text-center"><!--Stripe.js injects the Card Element--></div>
-			<button id="submit" class="btn btn-success">
+			<button id="submit" class="btn btn-success mt-3">
 				<div class="spinner hidden" id="spinner"></div>
-				<span id="button-text">Payer avec stripe</span>
+				<span id="button-text">Envoyer</span>
 			</button>
 			<p id="card-error" role="alert"></p>
 
@@ -20,9 +20,7 @@
 
 
 	</div>
-
 {% endblock %}
-
 {% block javascripts %}
 	{{ parent() }}
 	<script src="https://js.stripe.com/v3/"></script>
@@ -32,5 +30,4 @@ const stripePublicKey = "{{ stripePublicKey }}";
 const redirectAfterSuccessUrl = "{{ url('payment_success', {'id':purchase.id}) }}";
 	</script>
 	<script src="/js/payment.js"></script>
-
 {% endblock %}

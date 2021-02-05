@@ -29,33 +29,33 @@
 
 			</div>
 
-
-		{% endblock %}
-		{% block javascripts %}
-
-
-			{% if app.user %}
-				<script>
-					document.getElementById('inscription').style.display = 'none';
-				</script>
-				<script>
-					document.getElementById('connexion').style.display = 'none';
-				</script>
-				<script>
-					document.getElementById('deconnexion').style.display = 'block';
-				</script>
-
-			{% else %}
-				<script>
-					document.getElementById('inscription').style.display = 'block';
-				</script>
-				<script>
-					document.getElementById('connexion').style.display = 'block';
-				</script>
-				<script>
-					document.getElementById('deconnexion').style.display = 'none';
-				</script>
+		</div>
+	{% endblock %}
+	{% block javascripts %}
 
 
-			{% endif %}
-		{% endblock %}
+		{% if app.user %}
+			<script>
+				document.getElementById('inscription').style.display = 'none';
+			</script>
+			<script>
+				document.getElementById('connexion').style.display = 'none';
+			</script>
+			<script>
+				document.getElementById('deconnexion').style.display = 'block';
+			</script>
+
+		{% else %}
+			<script>
+				document.getElementById('inscription').style.display = 'block';
+			</script>
+			<script>
+				document.getElementById('connexion').style.display = 'block';
+			</script>
+			<script>
+				document.getElementById('deconnexion').style.display = 'none';
+			</script>
+
+
+		{% endif %}
+	{% endblock %}
