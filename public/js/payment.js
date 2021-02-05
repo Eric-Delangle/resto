@@ -34,7 +34,7 @@ document.querySelector("#card-error").textContent = event.error ? event.error.me
 const form = document.getElementById("payment-form");
 form.addEventListener("submit", function (event) {
 event.preventDefault();
-// Completer le paiment si le bouton submit est cliqué
+// Completer le paiement si le bouton submit est cliqué
 stripe.confirmCardPayment(clientSecret, {
 payment_method: {
 card: card
