@@ -245,6 +245,7 @@ class PurchaseController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($purchase);
             $entityManager->flush();
+            $this->addFlash('success', 'Cette commande a bien été supprimée !');
         }
 
         return $this->redirectToRoute('member_account');
