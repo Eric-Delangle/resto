@@ -91,7 +91,7 @@ class PurchaseController extends AbstractController
         $user = $this->getUser();
 
         if (!isset($user)) {
-            $this->addFlash('success', 'Vous devez être connecté pour commander.');
+            $this->addFlash('warning', 'Vous devez être connecté pour commander.');
             return $this->redirectToRoute('security_login');
         } else {
 
