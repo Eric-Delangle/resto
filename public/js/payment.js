@@ -42,7 +42,9 @@ card: card
 }
 }).then(function (result) {
 if (result.error) { // Si il y a une erreur la montrer a l'utilisateur
-console.log(result.error.message);
+
+const erreur = document.getElementById('probleme');
+erreur.innerHTML = result.error.message;
 } else { // Le paiement est un succès
     // voir les Webhooks de stripe pour que la commande soit mise en payée méme si la redirection ne fonctionne pas
 window.location.href = redirectAfterSuccessUrl;

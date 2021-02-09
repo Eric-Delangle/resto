@@ -185,12 +185,11 @@ body {
   padding: 0 !important;
 }
 
-/* si je mets ça les liens ne sont plus affichés dans la navbar
-a {
-  color: white !important;
-  text-decoration: none !important;
+/* erreur de paiement */
+
+#probleme {
+  background-color: darkorange;
 }
-*/
 
 /* --  ==== MEDIAQUERIES ====  -- */
 
