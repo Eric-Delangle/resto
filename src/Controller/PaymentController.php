@@ -21,7 +21,7 @@ class PaymentController extends AbstractController
     {
 
         $purchase = $purchaseRepo->find($id);
-
+        dump($purchase);
         $intent = $stripeService->getPaymentIntent($purchase);
 
 
